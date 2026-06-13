@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deutsch A1 · Netzwerk neu + Grammatik</title>
+    <style>
+        :root {
+            --green: #2a8c7e;
+            --green-d: #1e6659;
+            --bg: #f8f4eb;
+            --card: #fffdf9;
+        }
+        body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); margin: 0; padding: 0; line-height: 1.6; }
+        header { background: linear-gradient(135deg, #1e6659, #2a8c7e); color: white; padding: 1rem; text-align: center; position: sticky; top: 0; z-index: 100; }
+        h1 { margin: 0; }
+        .container { max-width: 900px; margin: 0 auto; padding: 1rem; }
+        .chapter { background: var(--card); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .vocab-list { display: grid; gap: 0.5rem; }
+        .vocab-item { background: #f0f7f6; padding: 0.75rem; border-radius: 8px; }
+        .ar { background: #f7f3f7; padding: 0.5rem; border-radius: 6px; margin-top: 0.25rem; font-size: 0.95em; }
+        button { background: var(--green); color: white; border: none; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; }
+        button:hover { background: var(--green-d); }
+        .toggle { position: absolute; top: 1rem; right: 1rem; }
+        .section-title { color: var(--green-d); border-bottom: 3px solid var(--green); padding-bottom: 0.5rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Deutsch A1 · Netzwerk neu</h1>
+        <button class="toggle" onclick="toggleArabic()">🇰🇷 عربي</button>
+    </header>
+
+    <div class="container">
+        <div class="intro">
+            <h2>Hallo! 👋 Deutsch A1 Schritt für Schritt</h2>
+            <p>Hier findest du alle Themen aus <strong>Netzwerk neu A1.1 + A1.2</strong> + Grammatik-Skript mit arabischen Erklärungen.</p>
+            <p><strong>أهلا! هنا محتوى مستوى A1 كامل من Netzwerk neu A1.1 و A1.2 + مذكرة القواعد.</strong></p>
+        </div>
+
+        <h2 class="section-title">📙 Netzwerk neu A1.1 · Kapitel 1–6</h2>
+        <div id="a11-chapters"></div>
+
+        <h2 class="section-title">📗 Netzwerk neu A1.2 · Kapitel 7–12</h2>
+        <div id="a12-chapters"></div>
+
+        <h2 class="section-title">📘 Grammatik-Skript A1</h2>
+        <div id="grammar"></div>
+
+        <h2 class="section-title">🔍 Wörterbuch / قاموس</h2>
+        <input type="text" id="search" placeholder="Suche nach Wort oder ابحث عن كلمة..." onkeyup="filterVocab()" style="width:100%; padding:0.75rem; margin-bottom:1rem; border-radius:8px; border:2px solid #ddd;">
+        <div id="dictionary"></div>
+    </div>
+
+    <script>
+        // Data for A1
+        const a1Chapters = {
+            a11: [
+                {
+                    num: 1,
+                    title: "Guten Tag!",
+                    subtitle: "Begrüßungen · Alphabet · Zahlen · Länder · Sprachen",
+                    ar: "مرحبا! (التحيات - الأبجدية - الأرقام - الدول واللغات)",
+                    vocab: [
+                        {de: "Guten Tag", ar: "نهارك سعيد / مرحبا", ex: "Guten Tag! Ich heiße Anna."},
+                        {de: "Hallo", ar: "مرحبا", ex: "Hallo, wie geht's?"},
+                        {de: "Tschüss / Auf Wiedersehen", ar: "مع السلامة", ex: "Tschüss!"},
+                        {de: "Wie heißt du?", ar: "ما اسمك؟", ex: "Wie heißt du? - Ich heiße Mohammed."},
+                        {de: "Ich bin ...", ar: "أنا ...", ex: "Ich bin Student."},
+                        {de: "null / eins / zwei", ar: "صفر / واحد / اثنان", ex: "Ich bin einundzwanzig Jahre alt."}
+                    ],
+                    grammar: "Personalpronomen + sein: ich bin, du bist, er/sie/es ist, wir sind, ihr seid, sie/Sie sind."
+                },
+                {
+                    num: 2,
+                    title: "Freunde, Kollegen und ich",
+                    subtitle: "Personen · Familie · Hobbys · Berufe",
+                    ar: "أصدقاء، زملاء وأنا (الأشخاص - العائلة - الهوايات - المهن)",
+                    vocab: [
+                        {de: "der Freund / die Freundin", ar: "الصديق / الصديقة", ex: "Das ist mein Freund."},
+                        {de: "die Familie", ar: "العائلة", ex: "Meine Familie ist groß."},
+                        {de: "das Hobby", ar: "الهواية", ex: "Mein Hobby ist Fußball."}
+                    ],
+                    grammar: "Artikel: der/die/das. Pluralbildung."
+                }
+                // Add more chapters here...
+            ],
+            a12: [
+                {
+                    num: 7,
+                    title: "Kontakt!",
+                    subtitle: "Kommunikation · Telefon · E-Mail",
+                    ar: "التواصل! (التواصل - الهاتف - البريد الإلكتروني)",
+                    vocab: [],
+                    grammar: ""
+                }
+                // ... more
+            ]
+        };
+
+        function renderChapters() {
+            const a11Div = document.getElementById('a11-chapters');
+            a1Chapters.a11.forEach(ch => {
+                const div = document.createElement('div');
+                div.className = 'chapter';
+                div.innerHTML = `
+                    <h3>Kapitel ${ch.num}: ${ch.title}</h3>
+                    <p><strong>${ch.subtitle}</strong></p>
+                    <div class="ar"><strong>عربي:</strong> ${ch.ar}</div>
+                    <h4>Wortschatz / المفردات:</h4>
+                    <div class="vocab-list">
+                        ${ch.vocab.map(v => `
+                            <div class="vocab-item">
+                                <strong>${v.de}</strong> – ${v.ar}<br>
+                                <em>"${v.ex}"</em>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <h4>Grammatik / القواعد:</h4>
+                    <p>${ch.grammar}</p>
+                    <button onclick="speak('${ch.title}')">🔊 Vorlesen</button>
+                `;
+                a11Div.appendChild(div);
+            });
+
+            // Similar for a12...
+            const a12Div = document.getElementById('a12-chapters');
+            a1Chapters.a12.forEach(ch => {
+                const div = document.createElement('div');
+                div.className = 'chapter';
+                div.innerHTML = `<h3>Kapitel ${ch.num}: ${ch.title}</h3><p>${ch.subtitle}</p><div class="ar">${ch.ar}</div>`;
+                a12Div.appendChild(div);
+            });
+        }
+
+        function filterVocab() {
+            // Simple search implementation
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            console.log('Searching for:', searchTerm);
+            // Expand with full dictionary later
+        }
+
+        function toggleArabic() {
+            document.body.classList.toggle('show-ar');
+            // Add CSS for .show-ar .ar { display: block; }
+        }
+
+        function speak(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'de-DE';
+            speechSynthesis.speak(utterance);
+        }
+
+        // Initialize
+        window.onload = function() {
+            renderChapters();
+            // Add more features: full dictionary, exercises, etc.
+            console.log('Deutsch A1 site loaded successfully!');
+        };
+    </script>
+</body>
+</html>

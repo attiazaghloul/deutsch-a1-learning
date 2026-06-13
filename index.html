@@ -1,10 +1,176 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta http-equiv="refresh" content="0; url=app/index.html">
-<title>Deutsch A1 · Netzwerk neu</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deutsch A1 · Netzwerk neu + Grammatik</title>
+    <style>
+        :root {
+            --green: #287c79;
+            --green-d: #175b5d;
+            --bg: #f6f2ea;
+            --card: #fffdf9;
+            --line: #e6ded1;
+        }
+        body { font-family: system-ui, sans-serif; background: var(--bg); margin: 0; padding: 0; line-height: 1.7; color: #263238; }
+        header { background: linear-gradient(135deg, #175b5d, #328986); color: white; padding: 1rem; position: sticky; top: 0; z-index: 100; }
+        .container { max-width: 980px; margin: 0 auto; padding: 1.5rem; }
+        .chapter { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 1.8rem; margin-bottom: 1.8rem; box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 1rem; }
+        .vocab-card { background: #f0f7f6; padding: 1.1rem; border-radius: 14px; border-left: 6px solid var(--green); }
+        .ar { background: #f7f3f7; padding: 0.7rem 1rem; border-radius: 10px; margin: 0.6rem 0; font-size: 0.95em; direction: rtl; text-align: right; }
+        button { background: var(--green); color: white; border: none; padding: 0.65rem 1.3rem; border-radius: 12px; cursor: pointer; font-weight: 700; }
+        button:hover { background: var(--green-d); }
+        .section-title { color: var(--green-d); border-bottom: 4px solid var(--green); padding-bottom: 0.6rem; margin-top: 2rem; }
+        .search { width: 100%; padding: 1rem; border: 2px solid #d1d5db; border-radius: 14px; font-size: 1.05rem; margin-bottom: 1.2rem; }
+        .tabs { display: flex; gap: 0.6rem; margin-bottom: 2rem; flex-wrap: wrap; }
+        .tab { padding: 0.7rem 1.4rem; background: white; border: 2px solid var(--green); border-radius: 9999px; cursor: pointer; font-weight: 700; }
+        .tab.active { background: var(--green); color: white; }
+        .intro { background: linear-gradient(135deg, #e5f3f0, #fff); padding: 2rem; border-radius: 20px; margin-bottom: 2rem; }
+    </style>
 </head>
 <body>
-<p>Redirecting to the app...</p>
+    <header>
+        <div style="max-width:980px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:0 1rem;">
+            <h1 style="margin:0; font-size:1.7rem;">Deutsch A1 · Netzwerk neu</h1>
+            <div style="display:flex; gap:0.6rem;">
+                <button onclick="toggleArabic()">🇰🇷 عربي</button>
+                <button onclick="speak('Willkommen zum Deutsch A1 Kurs mit Netzwerk neu. Viel Erfolg beim Lernen!')">🔊 Vorlesen</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="intro">
+            <h2>Hallo! 👋 Willkommen zum interaktiven Deutsch A1 Kurs</h2>
+            <p><strong>Netzwerk neu A1.1 + A1.2</strong> – كل الفصول + مفردات + قواعد + تمارين + شرح عربي.</p>
+            <p><strong>أهلاً بك!</strong> محتوى كامل من كتاب Netzwerk neu A1 مع ترجمة عربية وقراءة صوتية.</p>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" onclick="showTab('a11', this)">A1.1 (Kapitel 1-6)</div>
+            <div class="tab" onclick="showTab('a12', this)">A1.2 (Kapitel 7-12)</div>
+            <div class="tab" onclick="showTab('gram', this)">Grammatik</div>
+            <div class="tab" onclick="showTab('dict', this)">Wörterbuch</div>
+        </div>
+
+        <div id="a11">
+            <h2 class="section-title">📙 Netzwerk neu A1.1 · Kapitel 1–6</h2>
+            <div id="chapters-a11"></div>
+        </div>
+
+        <div id="a12" style="display:none;">
+            <h2 class="section-title">📗 Netzwerk neu A1.2 · Kapitel 7–12</h2>
+            <div id="chapters-a12"></div>
+        </div>
+
+        <div id="gram" style="display:none;">
+            <h2 class="section-title">📘 Grammatik-Skript A1</h2>
+            <div class="chapter">
+                <h3>Lektion 1: Personalpronomen + sein / haben</h3>
+                <div class="ar">الضمائر الشخصية + الفعلين sein و haben</div>
+                <p><strong>sein:</strong> ich bin, du bist, er/sie/es ist, wir sind, ihr seid, sie/Sie sind.</p>
+                <p><strong>haben:</strong> ich habe, du hast, er/sie/es hat...</p>
+                <button onclick="speak('ich bin, du bist, er ist, wir sind, ihr seid, sie sind')">🔊 Vorlesen</button>
+            </div>
+        </div>
+
+        <div id="dict" style="display:none;">
+            <h2 class="section-title">🔍 Wörterbuch / قاموس</h2>
+            <input type="text" id="search" class="search" placeholder="Suche Wort oder ابحث عن كلمة..." onkeyup="filterDict()">
+            <div id="dict-results" class="vocab-grid"></div>
+        </div>
+    </div>
+
+    <script>
+        const data = {
+            a11: [
+                { num: 1, title: "Guten Tag!", subtitle: "Begrüßungen · Alphabet · Zahlen · Länder · Sprachen", ar: "مرحبا! التحيات، الأبجدية، الأرقام، الدول واللغات", vocab: [ {de:"Guten Tag", ar:"نهارك سعيد", ex:"Guten Tag! Wie geht es Ihnen?"}, {de:"Hallo", ar:"مرحبا", ex:"Hallo, ich bin Ahmed."}, {de:"Tschüss", ar:"مع السلامة", ex:"Tschüss! Bis bald."}, {de:"Wie heißt du?", ar:"ما اسمك؟", ex:"Wie heißt du? - Ich heiße Sara."} ] },
+                { num: 2, title: "Freunde, Kollegen und ich", subtitle: "Personen · Familie · Hobbys · Berufe", ar: "الأصدقاء والزملاء وأنا", vocab: [ {de:"der Freund", ar:"الصديق", ex:"Das ist mein Freund."}, {de:"die Familie", ar:"العائلة", ex:"Meine Familie wohnt in Kairo."}, {de:"das Hobby", ar:"الهواية", ex:"Mein Hobby ist Fußball."} ] },
+                { num: 3, title: "In Hamburg", subtitle: "Stadt · Wegbeschreibung · Verkehr", ar: "في هامبورس", vocab: [] },
+                { num: 4, title: "Guten Appetit!", subtitle: "Essen · Trinken · Restaurant", ar: "شهية طيبة!", vocab: [] },
+                { num: 5, title: "Tag für Tag", subtitle: "Alltag · Zeit · Termine", ar: "يوم بعد يوم", vocab: [] },
+                { num: 6, title: "Zeit für Freizeit", subtitle: "Freizeit · Einladungen", ar: "وقت للفراغ", vocab: [] }
+            ],
+            a12: [
+                { num: 7, title: "Kontakt!", subtitle: "Kommunikation · Telefon · E-Mail", ar: "التواصل!", vocab: [] },
+                { num: 8, title: "Meine Wohnung", subtitle: "Wohnen · Möbel", ar: "شقتي", vocab: [] },
+                { num: 9, title: "Unterwegs", subtitle: "Reisen · Urlaub", ar: "على الطريق", vocab: [] },
+                { num: 10, title: "Körper und Gesundheit", subtitle: "Gesundheit · Arzt", ar: "الجسم والصحة", vocab: [] },
+                { num: 11, title: "Feste und Feiern", subtitle: "Feste · Geburtstage", ar: "الأعياد والاحتفالات", vocab: [] },
+                { num: 12, title: "Ab in den Urlaub!", subtitle: "Urlaub planen · Hotel", ar: "إلى العطلة!", vocab: [] }
+            ]
+        };
+
+        function renderChapters(id, chapters) {
+            const el = document.getElementById(id);
+            el.innerHTML = '';
+            chapters.forEach(ch => {
+                const div = document.createElement('div');
+                div.className = 'chapter';
+                let h = `<h3>Kapitel ${ch.num}: ${ch.title}</h3><p><strong>${ch.subtitle}</strong></p>`;
+                if (ch.ar) h += `<div class="ar"><strong>عربي:</strong> ${ch.ar}</div>`;
+                if (ch.vocab && ch.vocab.length) {
+                    h += `<h4>Wortschatz</h4><div class="vocab-grid">`;
+                    ch.vocab.forEach(v => {
+                        h += `<div class="vocab-card"><strong>${v.de}</strong><br><span class="ar">${v.ar}</span><br><em>"${v.ex || ''}"</em></div>`;
+                    });
+                    h += `</div>`;
+                }
+                h += `<button onclick="speak('${ch.title} ${ch.subtitle}')">🔊 Vorlesen</button>`;
+                div.innerHTML = h;
+                el.appendChild(div);
+            });
+        }
+
+        function showTab(tab, clicked) {
+            ['a11','a12','gram','dict'].forEach(t => document.getElementById(t).style.display = 'none');
+            document.getElementById(tab).style.display = 'block';
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            clicked.classList.add('active');
+        }
+
+        function filterDict() {
+            const term = document.getElementById('search').value.toLowerCase();
+            const res = document.getElementById('dict-results');
+            res.innerHTML = '';
+            let words = [];
+            data.a11.forEach(c => c.vocab && (words = words.concat(c.vocab)));
+            data.a12.forEach(c => c.vocab && (words = words.concat(c.vocab)));
+            words.filter(v => v.de.toLowerCase().includes(term) || v.ar.toLowerCase().includes(term)).forEach(v => {
+                const card = document.createElement('div');
+                card.className = 'vocab-card';
+                card.innerHTML = `<strong>${v.de}</strong><br><span class="ar">${v.ar}</span>`;
+                res.appendChild(card);
+            });
+        }
+
+        function toggleArabic() {
+            document.querySelectorAll('.ar').forEach(el => el.style.display = el.style.display === 'none' ? '' : 'none');
+        }
+
+        function speak(text) {
+            const u = new SpeechSynthesisUtterance(text);
+            u.lang = 'de-DE';
+            speechSynthesis.speak(u);
+        }
+
+        function init() {
+            renderChapters('chapters-a11', data.a11);
+            renderChapters('chapters-a12', data.a12);
+            // Initial dict words
+            const dictRes = document.getElementById('dict-results');
+            let initWords = [];
+            data.a11.forEach(c => c.vocab && (initWords = initWords.concat(c.vocab)));
+            initWords.forEach(v => {
+                const c = document.createElement('div');
+                c.className = 'vocab-card';
+                c.innerHTML = `<strong>${v.de}</strong><br><span class="ar">${v.ar}</span>`;
+                dictRes.appendChild(c);
+            });
+            console.log('%c[Deutsch A1] Site fully loaded and live!', 'color:#287c79');
+        }
+        window.onload = init;
+    </script>
 </body>
 </html>

@@ -10,27 +10,26 @@
         header { background: linear-gradient(135deg, #175b5d, #328986); color: white; padding: 1rem; position: sticky; top: 0; z-index: 100; }
         .container { max-width: 1000px; margin: 0 auto; padding: 1.5rem; }
         .chapter { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 1.8rem; margin-bottom: 1.8rem; box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
-        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; }
-        .vocab-card { background: #f0f7f6; padding: 1.1rem; border-radius: 14px; border-left: 6px solid var(--green); }
-        .ar { background: #f7f3f7; padding: 0.7rem 1rem; border-radius: 10px; margin: 0.6rem 0; font-size: 0.95em; direction: rtl; text-align: right; }
-        button { background: var(--green); color: white; border: none; padding: 0.65rem 1.3rem; border-radius: 12px; cursor: pointer; font-weight: 700; }
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1rem; }
+        .vocab-card { background: #f0f7f6; padding: 1rem; border-radius: 12px; border-left: 5px solid var(--green); font-size: 0.95rem; }
+        .ar { background: #f7f3f7; padding: 0.6rem 0.9rem; border-radius: 8px; margin: 0.5rem 0; font-size: 0.9em; direction: rtl; text-align: right; }
+        button { background: var(--green); color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 10px; cursor: pointer; font-weight: 700; font-size: 0.9rem; }
         button:hover { background: var(--green-d); }
-        .section-title { color: var(--green-d); border-bottom: 4px solid var(--green); padding-bottom: 0.6rem; margin-top: 2rem; }
-        .search { width: 100%; padding: 1rem; border: 2px solid #d1d5db; border-radius: 14px; font-size: 1.05rem; margin-bottom: 1.2rem; }
-        .tabs { display: flex; gap: 0.6rem; margin-bottom: 2rem; flex-wrap: wrap; }
-        .tab { padding: 0.7rem 1.4rem; background: white; border: 2px solid var(--green); border-radius: 9999px; cursor: pointer; font-weight: 700; }
+        .section-title { color: var(--green-d); border-bottom: 4px solid var(--green); padding-bottom: 0.5rem; margin-top: 2rem; }
+        .search { width: 100%; padding: 0.9rem; border: 2px solid #d1d5db; border-radius: 12px; font-size: 1rem; margin-bottom: 1rem; }
+        .tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .tab { padding: 0.6rem 1.2rem; background: white; border: 2px solid var(--green); border-radius: 999px; cursor: pointer; font-weight: 700; font-size: 0.9rem; }
         .tab.active { background: var(--green); color: white; }
-        .intro { background: linear-gradient(135deg, #e5f3f0, #fff); padding: 2rem; border-radius: 20px; margin-bottom: 2rem; }
-        .gram-block { background: #f0f7f6; padding: 1rem; border-radius: 12px; margin: 1rem 0; }
+        .intro { background: linear-gradient(135deg, #e5f3f0, #fff); padding: 1.8rem; border-radius: 18px; margin-bottom: 2rem; }
     </style>
 </head>
 <body>
     <header>
         <div style="max-width:1000px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:0 1rem;">
-            <h1 style="margin:0;">Deutsch A1 · Netzwerk neu</h1>
-            <div style="display:flex; gap:0.6rem;">
+            <h1 style="margin:0; font-size:1.5rem;">Deutsch A1 · Netzwerk neu</h1>
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
                 <button onclick="toggleArabic()">🇰🇷 عربي</button>
-                <button onclick="speak('Willkommen zum Deutsch A1 Kurs. Viel Erfolg!')">🔊 Vorlesen</button>
+                <button onclick="speak('Willkommen zum Deutsch A1 Kurs mit Netzwerk neu.')">🔊 Vorlesen</button>
             </div>
         </div>
     </header>
@@ -38,7 +37,7 @@
     <div class="container">
         <div class="intro">
             <h2>Hallo! 👋 Willkommen zum Deutsch A1 mit Netzwerk neu</h2>
-            <p><strong>كل محتوى Netzwerk neu A1.1 + A1.2</strong> – مفردات كثيرة + قواعد + أمثلة + شرح عربي + قراءة صوتية.</p>
+            <p><strong>محتوى قوي زي الكتاب الحقيقي</strong> — مفردات كثيرة لكل فصل + قواعد + أمثلة + شرح عربي + صوت.</p>
         </div>
 
         <div class="tabs">
@@ -63,20 +62,19 @@
             <div class="chapter">
                 <h3>Lektion 1: Personalpronomen + sein / haben</h3>
                 <div class="ar">الضمائر الشخصية + الفعلين sein و haben</div>
-                <p><strong>sein (يكون):</strong> ich bin, du bist, er/sie/es ist, wir sind, ihr seid, sie/Sie sind.</p>
-                <p><strong>haben (يملك):</strong> ich habe, du hast, er/sie/es hat, wir haben, ihr habt, sie/Sie haben.</p>
-                <button onclick="speak('ich bin, du bist, er ist')">🔊 Vorlesen</button>
+                <p><strong>sein:</strong> ich bin, du bist, er/sie/es ist, wir sind, ihr seid, sie/Sie sind</p>
+                <p><strong>haben:</strong> ich habe, du hast, er/sie/es hat, wir haben...</p>
             </div>
             <div class="chapter">
-                <h3>Lektion 2: Der, die, das + Plural</h3>
+                <h3>Lektion 2: Artikel (der/die/das) + Plural</h3>
                 <div class="ar">الأداد المعرفة + الجمع</div>
-                <p>der (مذكر) – die (مؤنث) – das (محايد). الجمع غالباً -e, -en, -er.</p>
+                <p>der (m) — die (f) — das (n). الجمع: -e / -en / -er / بدون نهاية</p>
             </div>
         </div>
 
         <div id="dict" style="display:none;">
             <h2 class="section-title">🔍 Wörterbuch / قاموس</h2>
-            <input type="text" id="search" class="search" placeholder="Suche oder ابحث..." onkeyup="filterDict()">
+            <input type="text" id="search" class="search" placeholder="Suche Wort oder ابحث..." onkeyup="filterDict()">
             <div id="dict-results" class="vocab-grid"></div>
         </div>
     </div>
@@ -87,85 +85,90 @@
                 {
                     num: 1,
                     title: "Guten Tag!",
-                    subtitle: "Begrüßungen, Alphabet, Zahlen, Länder, Sprachen",
+                    subtitle: "Begrüßungen · Alphabet · Zahlen · Länder · Sprachen",
                     ar: "مرحبا! التحيات والأبجدية والأرقام والدول واللغات",
                     vocab: [
                         {de: "Guten Tag", ar: "نهارك سعيد", ex: "Guten Tag! Wie geht es Ihnen?"},
-                        {de: "Hallo", ar: "مرحبا", ex: "Hallo, ich bin Ahmed."},
-                        {de: "Tschüss / Auf Wiedersehen", ar: "مع السلامة", ex: "Tschüss! Bis bald."},
-                        {de: "Wie heißt du?", ar: "ما اسمك؟", ex: "Wie heißt du? - Ich heiße Sara."},
-                        {de: "Ich bin ... Jahre alt", ar: "عمري ... سنة", ex: "Ich bin 25 Jahre alt."},
-                        {de: "null, eins, zwei, drei", ar: "صفر, واحد, اثنان, ثلاثة", ex: "Ich habe zwei Brüder."},
-                        {de: "Deutschland, Ägypten", ar: "ألمانيا, مصر", ex: "Ich komme aus Ägypten."},
-                        {de: "sprechen, lernen", ar: "يتكلم, يتعلم", ex: "Ich lerne Deutsch."}
+                        {de: "Hallo", ar: "مرحبا", ex: "Hallo, ich bin Ahmed aus Kairo."},
+                        {de: "Tschüss / Auf Wiedersehen", ar: "مع السلامة", ex: "Tschüss! Bis morgen."},
+                        {de: "Wie heißt du?", ar: "ما اسمك؟", ex: "Wie heißt du? - Ich heiße Sara Weber."},
+                        {de: "Ich bin ... Jahre alt", ar: "عمري ... سنة", ex: "Ich bin 22 Jahre alt."},
+                        {de: "null / eins / zwei / drei / vier / fünf", ar: "صفر / واحد / اثنان / ثلاثة / أربعة / خمسة", ex: "Ich habe zwei Geschwister."},
+                        {de: "Deutschland / Ägypten / Österreich", ar: "ألمانيا / مصر / النمسا", ex: "Ich komme aus Ägypten."},
+                        {de: "Deutsch / Arabisch / Englisch", ar: "ألماني / عربي / إنجليزي", ex: "Ich spreche Arabisch und Deutsch."},
+                        {de: "sprechen / lernen / heißen", ar: "يتكلم / يتعلم / يسمى", ex: "Ich lerne Deutsch."},
+                        {de: "gut / sehr gut / nicht so gut", ar: "جيد / جيد جداً / ليس جيداً", ex: "Mein Deutsch ist nicht so gut."}
                     ]
                 },
                 {
                     num: 2,
                     title: "Freunde, Kollegen und ich",
-                    subtitle: "Personen, Familie, Hobbys, Berufe",
+                    subtitle: "Personen · Familie · Hobbys · Berufe",
                     ar: "الأصدقاء والزملاء وأنا (العائلة - الهوايات - المهن)",
                     vocab: [
-                        {de: "der Freund / die Freundin", ar: "الصديق / الصديقة", ex: "Das ist mein Freund Tom."},
-                        {de: "die Familie", ar: "العائلة", ex: "Meine Familie ist groß."},
-                        {de: "das Hobby", ar: "الهواية", ex: "Mein Hobby ist Fußball."},
+                        {de: "der Freund / die Freundin", ar: "الصديق / الصديقة", ex: "Das ist mein bester Freund."},
+                        {de: "die Familie", ar: "العائلة", ex: "Meine Familie wohnt in Kairo."},
+                        {de: "das Hobby", ar: "الهواية", ex: "Mein Hobby ist Fußball spielen."},
                         {de: "der Beruf", ar: "المهنة", ex: "Was ist dein Beruf?"},
-                        {de: "der Lehrer / die Lehrerin", ar: "المعلم / المعلمة", ex: "Ich bin Lehrer."},
-                        {de: "die Mutter / der Vater", ar: "الأم / الأب", ex: "Meine Mutter ist Ärztin."},
-                        {de: "spielen, lesen, kochen", ar: "يلعب, يقرأ, يطبخ", ex: "Ich spiele gern Fußball."}
+                        {de: "der Lehrer / die Lehrerin", ar: "المعلم / المعلمة", ex: "Ich bin Lehrerin."},
+                        {de: "die Mutter / der Vater / die Geschwister", ar: "الأم / الأب / الإخوة", ex: "Meine Mutter ist Ärztin."},
+                        {de: "spielen / lesen / kochen / reisen", ar: "يلعب / يقرأ / يطبخ / يسافر", ex: "Ich spiele gern Fußball."},
+                        {de: "gern / nicht gern", ar: "بحب / ما بحبش", ex: "Ich koche gern."}
                     ]
                 },
                 {
                     num: 3,
                     title: "In Hamburg",
-                    subtitle: "Stadt, Wegbeschreibung, Verkehr, Sehenswürdigkeiten",
+                    subtitle: "Stadt · Wegbeschreibung · Verkehr · Sehenswürdigkeiten",
                     ar: "في هامبورس (المدينة - وصف الطريق - المواصلات)",
                     vocab: [
-                        {de: "der Bahnhof", ar: "محطة القطار", ex: "Der Bahnhof ist groß."},
-                        {de: "die Straße", ar: "الشارع", ex: "Gehen Sie die Straße entlang."},
-                        {de: "links / rechts", ar: "يسار / يمين", ex: "Gehen Sie links."},
-                        {de: "geradeaus", ar: "مباشرة", ex: "Gehen Sie geradeaus."}
+                        {de: "der Bahnhof", ar: "محطة القطار", ex: "Der Bahnhof ist sehr groß."},
+                        {de: "die Straße / die Ecke", ar: "الشارع / الزاوية", ex: "Gehen Sie die Straße entlang."},
+                        {de: "links / rechts / geradeaus", ar: "يسار / يمين / مباشرة", ex: "Gehen Sie links und dann geradeaus."},
+                        {de: "die Ampel / der Zebrastreifen", ar: "إشارة المرور / معبر المشاة", ex: "An der Ampel links."}
                     ]
                 },
                 {
                     num: 4,
                     title: "Guten Appetit!",
-                    subtitle: "Essen, Trinken, Einkaufen, Restaurant",
+                    subtitle: "Essen · Trinken · Einkaufen · Restaurant",
                     ar: "شهية طيبة! (الطعام - المشروبات - التسوق - المطعم)",
                     vocab: [
-                        {de: "das Brot / das Brötchen", ar: "الخبز / العيش الفراولة", ex: "Ich möchte ein Brötchen."},
-                        {de: "der Kaffee / der Tee", ar: "القهوة / الشاي", ex: "Ein Kaffee bitte."},
-                        {de: "das Restaurant", ar: "المطعم", ex: "Wir gehen ins Restaurant."}
+                        {de: "das Brot / das Brötchen / die Wurst", ar: "الخبز / العيش الفراولة / السجق", ex: "Ein Brötchen mit Wurst bitte."},
+                        {de: "der Kaffee / der Tee / das Wasser", ar: "القهوة / الشاي / الماء", ex: "Einen Kaffee bitte."},
+                        {de: "das Restaurant / das Café", ar: "المطعم / المقهى", ex: "Wir gehen ins Restaurant."},
+                        {de: "bestellen / bezahlen", ar: "يطلب / يدفع", ex: "Ich möchte bestellen."}
                     ]
                 },
                 {
                     num: 5,
                     title: "Tag für Tag",
-                    subtitle: "Alltag, Zeit, Tagesablauf, Termine",
+                    subtitle: "Alltag · Zeit · Tagesablauf · Termine",
                     ar: "يوم بعد يوم (الحياة اليومية - الوقت - المواعيد)",
                     vocab: [
-                        {de: "die Uhrzeit", ar: "الساعة", ex: "Wie viel Uhr ist es?"},
-                        {de: "heute / morgen / gestern", ar: "اليوم / غداً / أمس", ex: "Heute habe ich frei."}
+                        {de: "die Uhr / die Uhrzeit", ar: "الساعة / الوقت", ex: "Wie viel Uhr ist es?"},
+                        {de: "heute / morgen / gestern / am Wochenende", ar: "اليوم / غداً / أمس / في نهاية الأسبوع", ex: "Heute habe ich frei."},
+                        {de: "aufstehen / frühstücken / arbeiten", ar: "يستيقظ / يفطر / يعمل", ex: "Ich stehe um 7 Uhr auf."}
                     ]
                 },
                 {
                     num: 6,
                     title: "Zeit für Freizeit",
-                    subtitle: "Freizeit, Einladungen, Verabredungen",
+                    subtitle: "Freizeit · Einladungen · Verabredungen",
                     ar: "وقت للفراغ! (الفراغ - الدعوات - المواعيد)",
                     vocab: [
-                        {de: "einladen", ar: "يدعو", ex: "Ich lade dich ein."},
-                        {de: "verabreden", ar: "يتواعد", ex: "Wir verabreden uns."}
+                        {de: "einladen / verabreden", ar: "يدعو / يتواعد", ex: "Ich lade dich zum Kaffee ein."},
+                        {de: "treffen / zusammen", ar: "يلتقي / مع بعض", ex: "Wir treffen uns um 18 Uhr."}
                     ]
                 }
             ],
             a12: [
-                { num: 7, title: "Kontakt!", subtitle: "Kommunikation, Telefon, E-Mail", ar: "التواصل!", vocab: [ {de: "anrufen", ar: "يتصل هاتفياً", ex: "Ich rufe dich an."} ] },
-                { num: 8, title: "Meine Wohnung", subtitle: "Wohnen, Möbel, Haushalt", ar: "شقتي", vocab: [ {de: "das Zimmer", ar: "الغرفة", ex: "Mein Zimmer ist groß."} ] },
-                { num: 9, title: "Unterwegs", subtitle: "Reisen, Urlaub, Verkehrsmittel", ar: "على الطريق", vocab: [] },
-                { num: 10, title: "Körper und Gesundheit", subtitle: "Gesundheit, Arzt, Körperteile", ar: "الجسم والصحة", vocab: [] },
-                { num: 11, title: "Feste und Feiern", subtitle: "Feste, Geburtstage, Feiertage", ar: "الأعياد والاحتفالات", vocab: [] },
-                { num: 12, title: "Ab in den Urlaub!", subtitle: "Urlaub planen, Hotel, Flughafen", ar: "إلى العطلة!", vocab: [] }
+                { num: 7, title: "Kontakt!", subtitle: "Kommunikation · Telefon · E-Mail", ar: "التواصل!", vocab: [ {de: "anrufen / schreiben / mailen", ar: "يتصل هاتفياً / يكتب / يرسل إيميل", ex: "Ich rufe dich heute an."} ] },
+                { num: 8, title: "Meine Wohnung", subtitle: "Wohnen · Möbel · Haushalt", ar: "شقتي", vocab: [ {de: "das Zimmer / die Küche / das Bad", ar: "الغرفة / المطبخ / الحمام", ex: "Mein Zimmer ist klein aber gemütlich."} ] },
+                { num: 9, title: "Unterwegs", subtitle: "Reisen · Urlaub · Verkehrsmittel", ar: "على الطريق", vocab: [] },
+                { num: 10, title: "Körper und Gesundheit", subtitle: "Gesundheit · Arzt · Körperteile", ar: "الجسم والصحة", vocab: [] },
+                { num: 11, title: "Feste und Feiern", subtitle: "Feste · Geburtstage · Feiertage", ar: "الأعياد والاحتفالات", vocab: [] },
+                { num: 12, title: "Ab in den Urlaub!", subtitle: "Urlaub planen · Hotel · Flughafen", ar: "إلى العطلة!", vocab: [] }
             ]
         };
 
@@ -178,7 +181,7 @@
                 let html = `<h3>Kapitel ${ch.num}: ${ch.title}</h3><p><strong>${ch.subtitle}</strong></p>`;
                 if (ch.ar) html += `<div class="ar"><strong>عربي:</strong> ${ch.ar}</div>`;
                 if (ch.vocab && ch.vocab.length > 0) {
-                    html += `<h4>Wortschatz / المفردات</h4><div class="vocab-grid">`;
+                    html += `<h4>Wortschatz / المفردات (${ch.vocab.length} Wörter)</h4><div class="vocab-grid">`;
                     ch.vocab.forEach(v => {
                         html += `<div class="vocab-card"><strong>${v.de}</strong><br><span class="ar">${v.ar}</span><br><em>"${v.ex}"</em></div>`;
                     });
@@ -213,9 +216,7 @@
         }
 
         function toggleArabic() {
-            document.querySelectorAll('.ar').forEach(el => {
-                el.style.display = el.style.display === 'none' ? 'block' : 'none';
-            });
+            document.querySelectorAll('.ar').forEach(el => el.style.display = el.style.display === 'none' ? 'block' : 'none');
         }
 
         function speak(text) {
@@ -227,7 +228,6 @@
         function init() {
             renderChapters('chapters-a11', data.a11);
             renderChapters('chapters-a12', data.a12);
-            // Initial dictionary
             const dictRes = document.getElementById('dict-results');
             let initW = [];
             data.a11.forEach(ch => ch.vocab && (initW = initW.concat(ch.vocab)));
